@@ -1,0 +1,12 @@
+{
+  "name": "sinhalakavi",
+  "version": "0.0.0",
+  "description": "Sinhala Kavi",
+  "main": "web.js",
+  "author": "Thameera Senanayaka",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.7.2",
+    "morgan": "^1.2.2"
+  }
+}
