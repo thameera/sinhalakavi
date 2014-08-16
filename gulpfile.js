@@ -3,7 +3,7 @@ var jshint = require('gulp-jshint');
 var nodemon = require('gulp-nodemon');
 
 gulp.task('lint', function() {
-  return gulp.src('./public/js/**/*.js')
+  return gulp.src(['./public/js/**/*.js', '!./public/js/vendor/**'])
     .pipe(jshint())
     .pipe(jshint.reporter('default'));
 });

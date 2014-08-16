@@ -42,6 +42,10 @@ app.use(function(req, res, next) {
 app.use(express.static(path.join(__dirname, 'public'), {maxAge: week}));
 
 
+app.get('/views/index', function(req, res) {
+  res.render('index');
+});
+
 app.get('/', function(req, res) {
   res.render('layout', {
     title: 'Home'
