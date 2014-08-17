@@ -8,6 +8,8 @@ var _ = require('lodash');
 var path = require('path');
 var connectAssets = require('connect-assets');
 
+var poems = require('./poems.js');
+
 var app = express();
 
 var hour = 3600000;
