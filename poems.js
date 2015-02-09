@@ -1,21 +1,18 @@
 var fs = require('fs');
 
-var meta = [];
 
-meta[0] = {
-  title: 'බුදුගුණ අලංකාරය',
-  title_en: 'Buduguna Alankaraya',
-  author: 'වීදාගම මෛත්‍රීය හිමි',
-  file: 'buduguna_alankaraya.txt'
-};
+/*
+ * Returns the list of files in the data dir
+ * We assume that only a bunch of .txt files are present
+ */
+var getFileNames = function() {
+  return fs.readdirSync('data');
+}
 
-meta[1] = {
-  title: 'යසෝදරාවත',
-  title_en: 'Yasodarawatha',
-  author: 'කර්තෘ අඥාතයි',
-  file: 'yasodarawatha.txt'
-};
 
+/*
+ * Returns the contents of the file with given filename
+ */
 var readFile = function(filename) {
   var content = '';
 
@@ -28,12 +25,34 @@ var readFile = function(filename) {
   return content;
 };
 
+
+/*
+ * Returns whether str (the string) starts with arg
+ */
 var startsWith = function(str, arg) {
   return str.lastIndexOf(arg, 0) === 0;
 };
 
-var getVerses = function(filename) {
-  var verses = [];
+
+/*
+ * In:  'ab cd ef gh'
+ * Out: 'cd ef gh'
+ */
+var dropFirstWord = function(str) {
+  return str.substring(str.indexOf(' ') + 1);
+}
+
+
+/*
+ * Parses and returns the poem in the given file
+ */
+var getPoem = function(filename) {
+  var poem = {
+    title: '', title_en: '',
+    url: '',
+    author: '',
+    verses: []
+  };
   var verse;
   var verseStarted = false;
 
@@ -41,9 +60,17 @@ var getVerses = function(filename) {
 
   content.forEach(function(line) {
 
-    if (startsWith(line, '#')) { // New verse
+    if (startsWith(line, ':title_en')) {
+      poem.title_en = dropFirstWord(line);
+    } else if (startsWith(line, ':title')) {
+      poem.title = dropFirstWord(line);
+    } else if (startsWith(line, ':url')) {
+      poem.url = dropFirstWord(line);
+    } else if (startsWith(line, ':author')) {
+      poem.author = dropFirstWord(line);
+    } else if (startsWith(line, '#')) { // New verse
       if (verse) {
-        verses.push(verse);
+        poem.verses.push(verse);
       }
 
       verse = {};
@@ -64,21 +91,16 @@ var getVerses = function(filename) {
   });
 
   if (verse) {
-    verses.push(verse);
+    poem.verses.push(verse);
   }
 
-  return verses;
+  return poem;
 };
 
-var poems = meta.map(function(data) {
-  var poem = {
-    title: data.title,
-    title_en: data.title_en,
-    author: data.author,
-    verses: getVerses(data.file)
-  };
 
-  return poem;
+var poems = [];
+getFileNames().forEach(function(filename) {
+  poems.push(getPoem(filename));
 });
 
 module.exports = poems;

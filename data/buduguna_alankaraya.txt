@@ -1,3 +1,7 @@
+:title බුදුගුණ අලංකාරය
+:title_en Buduguna Alankaraya
+:url buduguna_alankaraya
+:author වීදාගම මෛත්‍රීය හිමි
 #1
 :verse
 කුළුණු මෙත් සත\rවෙත

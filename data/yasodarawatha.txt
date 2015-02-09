@@ -1,3 +1,7 @@
+:title යසෝදරාවත
+:title_en Yasodarawatha
+:url yasodarawatha
+:author කර්තෘ අඥාතයි
 #1
 :verse
 සාරාසංක්‍ය කප් ලක්ෂය පෙරුම්\rපුරා
