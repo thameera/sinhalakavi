@@ -8,7 +8,15 @@ html(ng-app='kaviApp')
     meta(name='csrf-token', content=_csrf)
     title Sinhala Kavi
     != css('styles')
+
   body
+    .row
+      .col-sm-12.header
+        .header-inner.text-center
+          .center-block
+            h1.site-title සිංහල කවි
+            h3.site-tagline අරුත්බර සිංහල කවි නොනැසී යෑමට දරණ වෑයමක්
+
     section(ui-view)
 
     != js('main')
