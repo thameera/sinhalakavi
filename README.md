@@ -6,7 +6,7 @@ Install node.js if you haven't already.
 
 Install the project dependencies with `npm install`.
 
-Install gulp with `npm install --global gulp`.
+Install bower and gulp with `npm install --global bower gulp`.
 
 Run gulp with `gulp`.
 

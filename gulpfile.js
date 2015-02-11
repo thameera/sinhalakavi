@@ -11,7 +11,7 @@ gulp.task('lint', function() {
 gulp.task('demon', function() {
   nodemon({
     script: 'web.js',
-    ext: 'js',
+    ext: 'js,jade,less',
     env: { 'NODE_ENV': 'development' }
   })
   .on('change', ['lint']);
